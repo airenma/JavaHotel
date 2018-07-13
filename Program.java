@@ -13,59 +13,82 @@ public class Program
 	
 	void start ()
 	{
-		showMenu();
-		System.out.println("Viso gero!");
+		while(true)
+		{
+			System.out.println(DB.get().getConnection());
+			showMenu();
+			switch(getMenuItem())
+			{
+			case 1 : showClients(); break;
+			case 2 : addClient(); break;
+			case 3 : checkInRoom(); break;
+			case 4 : checkOutRoom(); break;
+			case 0 :
+				default : System.out.println("Всего доброго!"); return;
+			}
+			
+		}
 	}
 
 	void showMenu ()
 	{
 		System.out.println();
-		System.out.println("--------== JAVA HOTEL ==--------");
-		System.out.println("1. Peržiureti klientų sąrašą.");
-		System.out.println("2. Užregistruoti naują klientą.");
-		System.out.println("3. Rezervuoti kambarį klientui.");
-		System.out.println("4. Išleisti klientą iš kambario.");
-		System.out.println("0. Išeiti");
+		System.out.println("-----== JAVA HOTEL ==-----");
+		System.out.println("1. Показать список клиентов.");
+		System.out.println("2. Зарегистрировать нового клиента.");
+		System.out.println("3. Прописать клиента в комнату.");
+		System.out.println("4. Выписать клиента из отеля.");
+		System.out.println("0. Закончить");
 	}
 	
 	int getMenuItem ()
 	{
-		System.out.println("Pasirinkite meniu punktą (0-4): ");
-		System.out.println("Meniu punktas pasirinktas neteisingai!");
-		return 0;
+		while(true)
+		{
+			System.out.println("Выберите пункт меню (0-4): ");
+			int num = scanner.nextInt(); scanner.nextLine();
+			if(num >= 0 && num < 5)
+			{
+				return num;
+			}
+			System.out.println("Пункт меню выбран неверно!");
+			
+		}
+		
+		
 	}
 
 	void showClients()
 	{
-		System.out.println("+ Peržiureti klientų sąrašą.");
+		System.out.println("+ Показать список клиентов.");
 	}
 	
 	void addClient()
 	{
-		System.out.println("++ Užregistruoti naują klientą.");
-		System.out.println("Įveskite kliento vardą: ");
-		System.out.println("KLAIDA. Klientas su tokiu vardu jau yra.");
-		System.out.println("Klientas užregistruotas:");
+		System.out.println("++ Зарегистрировать нового клиента.");
+		System.out.println("Введите имя клиента: ");
+		System.out.println("ОШИБКА. Клиент с таким именем уже зарегистрирован.");
+		System.out.println("Клиент зарегистрирован: ");
 	}
 	
 	void checkInRoom ()
 	{
-		System.out.println("+++ Rezervuoti kambarį klientui.");
-		System.out.println("Įveskite kliento vardą: ");
-		System.out.println("KLAIDA. Klientas nerastas.");
-		System.out.println("KLAIDA. Šis klientas jau apsigyvendintas");
-		System.out.println("Įveskite kambario pavadinimą: ");
-		System.out.println("KLAIDA. Kambaris nerastas.");
-		System.out.println("KLAIDA. Šis kambaris neturi laisvų vietų.");
-		System.out.println("Klientas apsigyvendintas.");
+		System.out.println("+++ Прописать клиента в комнату.");
+		System.out.println("Введите имя клиента: ");
+		System.out.println("ОШИБКА. Клиент не найден.");
+		System.out.println("ОШИБКА. Этот клиент уже прописан.");
+		System.out.println("Введите название комнаты: ");
+		System.out.println("ОШИБКА. Комната не найдена.");
+		System.out.println("ОШИБКА. В этой комнате нет свободных мест.");
+		System.out.println("Клиент прописан.");
 	}
 	
 	void checkOutRoom()
 	{
-		System.out.println("++++ Išleisti klientą iš kambario.");
-		System.out.println("Įveskite kliento vardą: ");
-		System.out.println("KLAIDA. Klientas nerastas.");
-		System.out.println("Šis klientas jau išvykė");
-		System.out.println("Klientas išleistas, vietą atlaisvintą.");
+		System.out.println("++++ Выписать клиента из отеля.");
+		System.out.println("Введите имя клиента: ");
+		System.out.println("ОШИБКА. Клиент не найден.");
+		System.out.println("ОШИБКА. Этот клиент не прописан.");
+		System.out.println("Клиент выписан, место в комнате освобождено.");
 	}
 }
