@@ -69,8 +69,15 @@ public class Program
 	{
 		System.out.println("++ Зарегистрировать нового клиента.");
 		System.out.println("Введите имя клиента: ");
-		System.out.println("ОШИБКА. Клиент с таким именем уже зарегистрирован.");
-		System.out.println("Клиент зарегистрирован: ");
+		String name = scanner.next();
+		if (Client.find(name) != null)
+		{
+			System.out.println("ОШИБКА. Клиент с таким именем уже зарегистрирован.");
+			return;
+		}
+		Client client = new Client(name);
+		client.add();
+		System.out.println("Клиент зарегистрирован: " + client);
 	}
 	
 	void checkInRoom ()

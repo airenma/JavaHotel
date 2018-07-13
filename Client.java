@@ -23,7 +23,19 @@ public class Client
 	public String toString()
 	{
 		//
-		return "Klientas Nr. "  + id + ":\t\t" 
+		if (room_id == 0)
+		{
+			return "Klientas Nr. "  
+					+ id 
+					+ ":\t\t" 
+						+ name ;
+						
+						
+		}
+		else
+		return "Klientas Nr. "  
+				+ id 
+				+ ":\t\t" 
 					+ name 
 					+ "\t\tKambarys #"
 					+ room_id;
@@ -38,7 +50,6 @@ public class Client
 			String query = "SELECT id, name, room_id " +
 					" FROM client " +
 					" ORDER BY room_id, name";
-			
 			PreparedStatement ps = DB.get().getConnection().prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next())
@@ -58,13 +69,49 @@ public class Client
 
 	public static Client find (String name)
 	{
-		//
-		return null;		
+		Client client = null;
+		try {
+			String query = "select id, name, room_id "
+					+ " from client "
+					+ " where name = ?";
+			PreparedStatement ps = DB.get().getConnection().prepareStatement(query);
+			ps.setString(1, name);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+			{
+				int id = rs.getInt("id");
+				name = rs.getString("name");
+				int room_id = rs.getInt("room_id");
+				client = new Client(id, name, room_id);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return client;		
 	}
 
 	public void add ()
 	{
-		//
+		
+		try {
+			String query = "INSERT INTO client(name)" +
+					"VALUES (?) ";
+			PreparedStatement ps = DB.get().getConnection().prepareStatement(query, 1);
+			ps.setString(1,  name);
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next())
+				{
+				id = rs.getInt(1);
+				}
+			else id = 0;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void updateRoomId ()
