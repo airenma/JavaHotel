@@ -84,11 +84,34 @@ public class Program
 	{
 		System.out.println("+++ Прописать клиента в комнату.");
 		System.out.println("Введите имя клиента: ");
-		System.out.println("ОШИБКА. Клиент не найден.");
-		System.out.println("ОШИБКА. Этот клиент уже прописан.");
+		String clientName = scanner.next();
+		Client client = Client.find(clientName);
+		if(client == null)
+		{
+			System.out.println("ОШИБКА. Клиент не найден.");
+			return;
+		}
+		if(client.room_id > 0)
+		{
+			System.out.println("ОШИБКА. Этот клиент уже прописан.");
+			return;
+		}
+		
 		System.out.println("Введите название комнаты: ");
-		System.out.println("ОШИБКА. Комната не найдена.");
-		System.out.println("ОШИБКА. В этой комнате нет свободных мест.");
+		String roomName = scanner.next();
+		Room room = Room.find(roomName);
+		if(room == null)
+		{
+			System.out.println("ОШИБКА. Комната не найдена.");
+			return;
+		}
+		if(room.getUsedBeds() >= room.beds)
+		{
+			System.out.println("ОШИБКА. В этой комнате нет свободных мест.");
+			return;
+		}
+		client.room_id = client.id;
+		client.updateRoomId();
 		System.out.println("Клиент прописан.");
 	}
 	

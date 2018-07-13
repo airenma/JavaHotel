@@ -116,6 +116,23 @@ public class Client
 	
 	public void updateRoomId ()
 	{
-		//
+		try {
+			String query = "UPDATE client SET room_id = ? " +
+							" WHERE id = ? ";
+			PreparedStatement ps = DB.get().getConnection().prepareStatement(query, 1);
+			
+			
+			if(room_id > 0)
+			{
+				ps.setInt(1, room_id);
+			}
+			else 
+				ps.setNull(1, Types.INTEGER);
+			ps.setInt(2, id);
+			ps.executeUpdate();
+			} catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
 	}	
 }
