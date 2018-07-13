@@ -61,6 +61,8 @@ public class Program
 	void showClients()
 	{
 		System.out.println("+ Показать список клиентов.");
+		for(Client client : Client.getList())
+			System.out.println(client);
 	}
 	
 	void addClient()
