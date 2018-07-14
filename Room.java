@@ -1,12 +1,9 @@
-import java.util.ArrayList;
 import java.sql.*;
-
 /**
  * 
  * @author by Andrej Gladkov
  *
  */
-
 
 public class Room 
 {
@@ -23,7 +20,7 @@ public class Room
 	
 	public Room (String name, int beds)
 	{
-		this(0, name, beds);
+		this(0, name, 0);
 	}
 	
 	public static Room find (String name)
@@ -53,7 +50,7 @@ public class Room
 	public int getUsedBeds ()
 	{
 		try{
-			String query = "SELECT count(room_id) " +
+			String query = "SELECT count(*) " +
 							" FROM client " +
 							" WHERE id = ? ";
 			PreparedStatement ps = DB.get().getConnection().prepareStatement(query, 1);
@@ -61,7 +58,7 @@ public class Room
 			ResultSet rs = ps.executeQuery();
 			if(rs.next())
 			{
-				return id = rs.getInt(1);
+				return rs.getInt(1);
 				
 			}
 		} catch (SQLException e){

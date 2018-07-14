@@ -115,7 +115,7 @@ public class Program
 			System.out.println("ОШИБКА. В этой комнате нет свободных мест.");
 			return;
 		}
-		client.room_id = client.id;
+		client.room_id = room.id;
 		client.updateRoomId();
 		System.out.println("Клиент прописан.");
 	}
