@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.sql.*;
 
+/**
+ * 
+ * @author by Andrej Gladkov
+ *
+ */
+
+
 public class Room 
 {
 	public int id;

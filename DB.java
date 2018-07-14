@@ -1,5 +1,11 @@
 import java.sql.*;
 
+/**
+ * 
+ * @author by Andrej Gladkov
+ *
+ */
+
 public class DB 
 {
 	public final String CONNECTS = "jdbc:mysql://localhost/HOTEL?useSSL=false";

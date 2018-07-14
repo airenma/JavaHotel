@@ -1,4 +1,9 @@
 import java.util.Scanner;
+/**
+ * 
+ * @author by Andrej Gladkov
+ *
+ */
 
 public class Program 
 {
@@ -119,8 +124,20 @@ public class Program
 	{
 		System.out.println("++++ Выписать клиента из отеля.");
 		System.out.println("Введите имя клиента: ");
-		System.out.println("ОШИБКА. Клиент не найден.");
-		System.out.println("ОШИБКА. Этот клиент не прописан.");
+		String name = scanner.next();
+		Client client = Client.find(name);
+		if(client == null)
+		{
+			System.out.println("ОШИБКА. Клиент не найден.");
+			return;
+		}
+		if(client.room_id == 0)
+		{
+			System.out.println("ОШИБКА. Этот клиент не прописан.");
+			return;
+		}
+		client.room_id = 0;
+		client.updateRoomId();
 		System.out.println("Клиент выписан, место в комнате освобождено.");
 	}
 }

@@ -1,11 +1,23 @@
 import java.util.ArrayList;
 import java.sql.*;
+/**
+ * 
+ * @author by Andrej Gladkov
+ *
+ */
+
 
 public class Client 
 {
-	public int id;
-	public String name;
-	public int room_id;
+	public int id; //id
+	public String name; //name
+	public int room_id; //room_id
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param room_id
+	 */
 	
 	public Client (int id, String name, int room_id)
 	{
@@ -13,11 +25,18 @@ public class Client
 		this.name = name;
 		this.room_id = room_id;
 	}
+	/**
+	 * конструктор
+	 * @param name
+	 */
 	
 	public Client (String name)
 	{
 		this(0, name, 0);
 	}
+	/**
+	 * konstruktor
+	 */
 	
 	@Override
 	public String toString()
@@ -29,8 +48,6 @@ public class Client
 					+ id 
 					+ ":\t\t" 
 						+ name ;
-						
-						
 		}
 		else
 		return "Klientas Nr. "  
@@ -41,6 +58,10 @@ public class Client
 					+ room_id;
 	}
 	
+	/**
+	 * вывести текст. Если прописан, то с номером комнаты, если нет, то пустое поле
+	 * @return String
+	 */
 	public static ArrayList<Client> getList() 
 	{
 		ArrayList<Client> list = new ArrayList<>();
@@ -66,6 +87,11 @@ public class Client
 		
 		return list;
 	}
+	/**
+	 * извлекаем из БД все данные о клиенте, сортируя их по комнате и ид.
+	 * @param name
+	 * @return
+	 */
 
 	public static Client find (String name)
 	{
@@ -91,6 +117,9 @@ public class Client
 		
 		return client;		
 	}
+	/**
+	 * поиск нужного клиента в БД
+	 */
 
 	public void add ()
 	{
@@ -113,6 +142,9 @@ public class Client
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * добавление клиента в БД
+	 */
 	
 	public void updateRoomId ()
 	{
@@ -136,3 +168,6 @@ public class Client
 			}
 	}	
 }
+/**
+обновление  измененных данных в БД
+*/
