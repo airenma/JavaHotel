@@ -20,7 +20,7 @@ public class Program
 	{
 		while(true)
 		{
-			System.out.println(DB.get().getConnection());
+//			System.out.println(DB.get().getConnection());
 			showMenu();
 			switch(getMenuItem())
 			{
@@ -110,7 +110,7 @@ public class Program
 			System.out.println("ОШИБКА. Комната не найдена.");
 			return;
 		}
-		if(room.getUsedBeds() >= room.beds)
+		if(room.getUsedBeds() > room.beds)
 		{
 			System.out.println("ОШИБКА. В этой комнате нет свободных мест.");
 			return;

@@ -50,7 +50,7 @@ public class Room
 	public int getUsedBeds ()
 	{
 		try{
-			String query = "SELECT count(*) " +
+			String query = "SELECT count(room_id) " +
 							" FROM client " +
 							" WHERE id = ? ";
 			PreparedStatement ps = DB.get().getConnection().prepareStatement(query, 1);
